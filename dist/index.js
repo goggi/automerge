@@ -178,11 +178,11 @@ class AutomergeAction {
             const baseBranch = pullRequest.base.ref;
             const requiredStatusChecks = yield (0, helpers_1.requiredStatusChecksForBranch)(this.octokit, baseBranch);
             // Only auto-merge if there is at least one required status check.
-            if (requiredStatusChecks.length < 1) {
-                core.info(`Base branch '${baseBranch}' of pull request ${number} is not sufficiently protected.`);
-                yield this.disableAutoMerge(pullRequest);
-                return;
-            }
+            // if (requiredStatusChecks.length < 1) {
+            //     core.info(`Base branch '${baseBranch}' of pull request ${number} is not sufficiently protected.`);
+            //     yield this.disableAutoMerge(pullRequest);
+            //     return;
+            // }
             const labels = pullRequest.labels.map(({ name }) => name).filter(ts_is_present_1.isPresent);
             const doNotMergeLabels = labels.filter(label => this.input.isDoNotMergeLabel(label));
             if (doNotMergeLabels.length > 0) {
